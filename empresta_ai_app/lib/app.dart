@@ -22,5 +22,5 @@ class EmprestaAiApp extends StatelessWidget{
       ),
     );
   }
-
+  
 }
