@@ -2,6 +2,7 @@ import 'package:empresta_ai_app/controllers/itens_controller.dart';
 import 'package:empresta_ai_app/controllers/sessao_controller.dart';
 import 'package:empresta_ai_app/theme/tema.dart';
 import 'package:flutter/material.dart';
+import 'package:empresta_ai_app/view/inicio_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key, required this.sessao, required this.itens});
@@ -21,9 +22,13 @@ class _LoginViewState extends State<LoginView> {
   bool _senhaEscondida = true;
 
   void _entrar(){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Login efetuado com sucesso"))
-      );
+    if (!_formKey.currentState!.validate()) return;
+    if (!widget.sessao.entrar(_apartamento.text, _senha.text)) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => InicioView(sessao: widget.sessao, itens: widget.itens),
+      ),
+    );
   }
 
   @override
