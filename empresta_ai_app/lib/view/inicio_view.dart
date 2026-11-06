@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:empresta_ai_app/controllers/itens_controller.dart';
 import 'package:empresta_ai_app/controllers/sessao_controller.dart';
+import 'package:empresta_ai_app/view/itens_view.dart';
 import 'package:empresta_ai_app/view/perfil_view.dart';
-import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class InicioView extends StatefulWidget {
@@ -21,7 +23,7 @@ class _InicioViewState extends State<InicioView> {
   Widget build(Object context) {
 
     final abas = [
-      Center(child: Text('Lista de itens: chega na issue #6')),
+      ItensView(controller: widget.itens),
       Center(child: Text('Meus pedidos: chega na issue #8')),
       PerfilView(sessao: widget.sessao),
     ];
@@ -32,6 +34,10 @@ class _InicioViewState extends State<InicioView> {
         selectedIndex: _abaAtual,
         onDestinationSelected: (i) => setState(() => _abaAtual = i),
         destinations: [
+          NavigationDestination(
+            icon: Icon(Icons.search), 
+            label: 'Itens',
+          ),
           NavigationDestination(
             icon: Icon(Icons.inventory_2_outlined), 
             selectedIcon: Icon(Icons.inventory_2),
